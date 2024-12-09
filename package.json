@@ -1,16 +1,24 @@
 {
   "private": true,
+  "type": "module",
   "scripts": {
+    "dev": "nodemon server.js",
     "build": "next build",
-    "dev": "next dev",
-    "start": "next start"
+    "start": "NODE_ENV=production node server.js",
+    "lint": "next lint"
   },
   "dependencies": {
     "next": "latest",
+    "nodemon": "^3.1.7",
     "react": "18.2.0",
-    "react-dom": "18.2.0"
+    "react-dom": "18.2.0",
+    "socket.io": "^4.8.1",
+    "socket.io-client": "^4.8.1"
   },
   "engines": {
     "node": ">=18"
+  },
+  "devDependencies": {
+    "@types/react": "19.0.1"
   }
 }
