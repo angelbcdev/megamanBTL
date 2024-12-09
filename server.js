@@ -2,7 +2,13 @@ import { createServer } from "node:http";
 import next from "next";
 import { Server } from "socket.io";
 
-const dev = process.env.NODE_ENV !== "production";
+import { config } from "dotenv"; // You can also use require("dotenv").
+
+config();
+
+const dev = process.env.local !== "production";
+console.log("process.envd.HOSTNAME--d----", process.env.HOSTNAME);
+
 const hostname = process.env.HOSTNAME;
 const port = process.env.PORT || 3000;
 // when using middleware `hostname` and `port` must be provided below

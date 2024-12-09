@@ -3,7 +3,11 @@
 import { useEffect, useState } from "react";
 import { io } from "socket.io-client";
 
-export const socket = io();
+const hostname = process.env.NEXT_PUBLIC_SOCKET_URL;
+
+console.log("client", hostname);
+
+export const socket = io(hostname);
 
 export default function Home() {
   const [isConnected, setIsConnected] = useState(false);
