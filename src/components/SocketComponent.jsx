@@ -5,17 +5,12 @@ import { io } from "socket.io-client";
 
 export const socket = io();
 
-
-
-
 export default function Home() {
   const [isConnected, setIsConnected] = useState(false);
   const [transport, setTransport] = useState("N/A");
   const [message, setMessage] = useState(["nada"]);
   const [sendMessage, setSendMessage] = useState("empty");
   const [userID, setUserID] = useState("");
-
-
 
   const sendHello = () => {
     socket.emit("message", sendMessage + " " + userID);
@@ -44,9 +39,6 @@ export default function Home() {
     socket.on("connect", onConnect);
     socket.on("disconnect", onDisconnect);
 
-
-
-
     socket.on("message", (msg) => {
       // Actualiza la interfaz de usuario con el nuevo mensaje
 
@@ -57,9 +49,6 @@ export default function Home() {
       socket.off("connect", onConnect);
       socket.off("disconnect", onDisconnect);
     };
-
-
-
   }, []);
 
   return (
@@ -67,17 +56,19 @@ export default function Home() {
       <p>Status: {isConnected ? "connected" : "disconnected"}</p>
       <p>Transport user: {userID} </p>
 
-      <input type="text" onChange={(e) => setSendMessage(e.target.value)} value={sendMessage} placeholder="Message" />
+      <input
+        type="text"
+        onChange={(e) => setSendMessage(e.target.value)}
+        value={sendMessage}
+        placeholder="Message"
+      />
 
       <button onClick={sendHello}>Send Hello</button>
       <div>
-        {
-          message.map((msg) => (
-            <p key={msg}>{msg}</p>
-          ))
-        }
+        {message.map((msg) => (
+          <p key={msg}>{msg}</p>
+        ))}
       </div>
     </div>
-
   );
 }
